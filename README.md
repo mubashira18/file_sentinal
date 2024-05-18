@@ -1,5 +1,8 @@
 # Real-Time File Monitoring and Notification System
 
+
+
+
 ## Overview
 This project is a real-time file monitoring and notification system designed to improve web-based file management. It enables users to monitor changes in a specified directory in real-time, including file additions, modifications, and deletions. The system uses WebSocket communication for instant updates and integrates with MongoDB for efficient data storage and retrieval.
 
@@ -72,51 +75,6 @@ This project is a real-time file monitoring and notification system designed to 
 ### Chokidar
 Chokidar is used to watch for file changes in the specified directory. It triggers events when files are added, modified, or deleted.
 
-#### Example
-```javascript
-const chokidar = require('chokidar');
-const watcher = chokidar.watch('./path/to/dir', {
-  ignored: /(^|[\/\\])\../,
-  persistent: true
-});
-
-watcher
-  .on('add', path => console.log(`File ${path} has been added`))
-  .on('change', path => console.log(`File ${path} has been changed`))
-  .on('unlink', path => console.log(`File ${path} has been removed`));
-```
-
-### Nodemailer
-Nodemailer is used to send email notifications to users.
-
-#### Example
-```javascript
-const nodemailer = require('nodemailer');
-
-let transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
-});
-
-let mailOptions = {
-  from: '"Your Name" <your-email@example.com>',
-  to: 'user@example.com',
-  subject: 'File Notification',
-  text: 'A file has been changed in your monitored directory.'
-};
-
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    return console.log(error);
-  }
-  console.log('Message sent: %s', info.messageId);
-});
-```
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for any improvements.
